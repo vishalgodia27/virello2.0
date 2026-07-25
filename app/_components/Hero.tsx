@@ -1,8 +1,10 @@
 import React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Backpack, MapPinned, Wallet, Plane, Globe2, Send } from "lucide-react";
-import { HeroVideoDialog } from "@/components/ui/hero-video-dialog"
+import { Backpack, MapPinned, Wallet, Plane, Send } from "lucide-react";
+import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
+import { ArrowBigDown } from "lucide-react";
+
 const suggestion = [
   {
     title: "I have 5 days. Where should I go?",
@@ -21,37 +23,43 @@ const suggestion = [
     icon: <Backpack className="h-5 w-5 text-violet-500" />,
   },
 ];
+
 const Hero = () => {
   return (
-    <div className="mt-24 flex flex-col items-center justify-center text-center px-6">
-      {/* Content */}
-      <div className="max-w-3xl w-full">
-        <h1 className="text-3xl md:text-5xl font-bold leading-tight">
+    <section className="flex flex-col items-center justify-center gap-12 px-6 pt-13 pb-20 text-center">
+      {/* Heading */}
+      <div className="flex max-w-3xl flex-col items-center gap-5">
+        <h1 className="text-3xl font-bold leading-tight tracking-tight md:text-5xl">
           Your heart knows the destination.
-          <span className="text-sky-600"> We'll get you there.</span>
+          <span className="text-sky-600"> We&apos;ll get you there.</span>
         </h1>
 
-        <p className="mt-5 text-gray-600 text-lg">
-          Plan unforgettable journeys with AI—personalized itineraries, smart
-          recommendations, and hassle-free travel planning.
-        </p>
+       <p className="max-w-2xl text-lg text-gray-600">
+  Plan unforgettable journeys with AI—smart, hassle-free travel planning.
+
+    </p>
       </div>
-      <div className="rounded-3xl border border-gray-200 bg-white p-5 shadow-lg transition-all duration-300 hover:border-primary hover:shadow-xl relative ">
+
+      {/* Input box */}
+      <div className="relative w-full max-w-2xl rounded-3xl border border-gray-200 bg-white p-5 shadow-lg transition-all duration-300 hover:border-primary hover:shadow-xl">
         <Textarea
-          className="h-32 w-full resize-none border-none bg-transparent p-0 text-base text-gray-800 placeholder:text-gray-400 focus-visible:ring-0 focus-visible:outline-none shadow-none"
-          placeholder="✨ Share your dream destination, travel style, budget, or special wishes..."
+          className="h-32 w-full resize-none border-none bg-transparent p-0 pr-12 text-base text-gray-800 shadow-none placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-0"
+          placeholder="Share your dream destination, travel style, budget, or special wishes..."
         />
-        <Button size={"icon"} className="absolute bottom-6 right-6">
-          <Send className="h-4 w-4 " />
+        <Button
+          size="icon"
+          className="absolute bottom-5 right-5"
+        >
+          <Send className="h-4 w-4" />
         </Button>
       </div>
 
       {/* Suggestion list */}
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <div className="flex w-full max-w-5xl items-stretch justify-center gap-6">
         {suggestion.map((item, index) => (
           <div
             key={index}
-            className="flex cursor-pointer items-center gap-3 rounded-2xl border border-gray-200 bg-white px-5 py-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-500 hover:shadow-lg"
+            className="flex shrink-0 cursor-pointer items-center gap-3 rounded-2xl border border-gray-200 bg-white px-5 py-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-500 hover:shadow-lg"
           >
             {item.icon}
             <h2 className="text-sm font-medium text-gray-700">
@@ -60,16 +68,22 @@ const Hero = () => {
           </div>
         ))}
       </div>
-
+      <h2 className=" flex gap-2 justify-center text-center">
+        Need a quick tour?
+        <strong>See it in action </strong> <ArrowBigDown/>
+      </h2>
       {/* Video Section */}
-      <HeroVideoDialog
-        className="block dark:hidden"
-        animationStyle="from-center"
-        videoSrc="https://www.youtube.com/embed/yO7fQJKpqmI"
-        thumbnailSrc="https://img.youtube.com/vi/yO7fQJKpqmI/maxresdefault.jpg"
-        thumbnailAlt="Dummy Video Thumbnail"
-      />
-    </div>
+      <div className="w-full max-w-3xl">
+        <HeroVideoDialog
+          className="block dark:hidden"
+          animationStyle="from-center"
+          videoSrc="https://www.youtube.com/embed/yO7fQJKpqmI"
+          thumbnailSrc="https://img.youtube.com/vi/yO7fQJKpqmI/maxresdefault.jpg"
+          thumbnailAlt="Dummy Video Thumbnail"
+        />
+      </div>
+      
+    </section>
   );
 };
 
