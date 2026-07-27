@@ -1,0 +1,121 @@
+// import { clerkMiddleware } from "@clerk/nextjs/server";
+
+// export default clerkMiddleware();
+
+// export const config = {
+//   matcher: [
+//     // Skip Next.js internals and static files
+//     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+
+//     // Run for API routes
+//     "/(api|trpc)(.*)",
+
+//     // Run for Clerk routes
+//     "/__clerk/:path*",
+//   ],
+// };
+
+// import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+
+// const isPublicRoute = createRouteMatcher([
+//   "/sign-in(.*)",
+//   "/sign-up(.*)",
+// ]);
+
+// export default clerkMiddleware(async (auth, req) => {
+//   if (!isPublicRoute(req)) {
+//     await auth.protect();
+//   }
+// });
+
+// export const config = {
+//   matcher: [
+//     // Skip Next.js internals and all static files
+//     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+
+//     // Run for API routes
+//     "/(api|trpc)(.*)",
+
+//     // Run for Clerk routes
+//     "/__clerk/:path*",
+//   ],
+// };
+// import { clerkMiddleware } from "@clerk/nextjs/server";
+
+// export default clerkMiddleware();
+
+// export const config = {
+//   matcher: [
+//     // Skip Next.js internals and static files
+//     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+
+//     // Always run for API routes
+//     "/(api|trpc)(.*)",
+
+//     // Always run for Clerk proxy routes
+//     "/__clerk/(.*)",
+//   ],
+// };
+
+// import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+
+// const isPublicRoute = createRouteMatcher([
+//   "/sign-in(.*)",
+//   "/sign-up(.*)",
+// ]);
+
+// export default clerkMiddleware(async (auth, req) => {
+//   if (!isPublicRoute(req)) {
+//     await auth.protect();
+//   }
+// });
+
+// export const config = {
+//   matcher: [
+//     // Skip Next.js internals and static files
+//     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+
+//     // Always run for API routes
+//     "/(api|trpc)(.*)",
+
+//     // Always run for Clerk proxy routes
+//     "/__clerk/(.*)",
+//   ],
+// };
+// import { clerkMiddleware } from "@clerk/nextjs/server";
+
+// export default clerkMiddleware();
+
+// export const config = {
+//   matcher: [
+//     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+//     "/(api|trpc)(.*)",
+//     "/__clerk/(.*)",
+//   ],
+// };
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+
+const isPublicRoute = createRouteMatcher([
+  "/",
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+]);
+
+export default clerkMiddleware(async (auth, req) => {
+  if (!isPublicRoute(req)) {
+    await auth.protect();
+  }
+});
+
+export const config = {
+  matcher: [
+    // Skip Next.js internals and static files
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+
+    // Always run for API routes
+    "/(api|trpc)(.*)",
+
+    // Always run for Clerk proxy routes
+    "/__clerk/(.*)",
+  ],
+};
