@@ -1,9 +1,12 @@
+"use client";
 import React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Backpack, MapPinned, Wallet, Plane, Send } from "lucide-react";
 import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
 import { ArrowBigDown } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const suggestion = [
   {
@@ -25,6 +28,20 @@ const suggestion = [
 ];
 
 const Hero = () => {
+  const {user}=useUser();
+  const router=useRouter();
+  const onSend=()=>{
+    if(!user)
+    {
+      router.push('/sign-in')
+      return ;
+    }
+    
+
+
+  }
+
+
   return (
     <section className="flex flex-col items-center justify-center gap-12 px-6 pt-13 pb-20 text-center">
       {/* Heading */}
@@ -48,7 +65,8 @@ const Hero = () => {
         />
         <Button
           size="icon"
-          className="absolute bottom-5 right-5"
+          className="absolute bottom-5 right-5 "
+          onClick={()=>onSend()}
         >
           <Send className="h-4 w-4" />
         </Button>

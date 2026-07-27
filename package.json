@@ -13,6 +13,7 @@
     "@tabler/icons-react": "^3.45.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "convex": "^1.42.3",
     "cors": "^2.8.6",
     "lucide-react": "^1.24.0",
     "motion": "^12.42.2",
