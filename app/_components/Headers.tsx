@@ -1,8 +1,10 @@
+"use client"
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button"
+import { useUser } from "@clerk/nextjs";
 const menuOptions = [
   {
     name: "Home",
@@ -19,6 +21,7 @@ const menuOptions = [
 ];
 
 function Header() {
+  const { user } = useUser();
   return (
     <div className="flex justify-between items-center px-10 py-5 margin=0">
       {/* Logo */}
@@ -39,7 +42,21 @@ function Header() {
       </div>
 
       {/* Button */}
-      <InteractiveHoverButton>Get Started </InteractiveHoverButton>
+
+
+
+      {/* Button */}
+      {!user ? (
+        <InteractiveHoverButton>
+          Get Started
+        </InteractiveHoverButton>
+      ) : (
+        <Link href="/create-trip">
+          <InteractiveHoverButton>
+            Create Trip
+          </InteractiveHoverButton>
+        </Link>
+      )}
     </div>
   );
 }
