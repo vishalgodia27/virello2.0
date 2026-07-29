@@ -1,50 +1,12 @@
-// "use client"
-// import React, { useEffect } from "react";
-// import Header from "./_components/Headers";
-// import { useMutation } from "convex/react";
-// import { api } from '@/convex/_generated/api';
-// import { useUser } from "@clerk/nextjs";
 
-// function Provider({
-//   children,
-// }: Readonly<{
-//   children: React.ReactNode;
-// }>) {
-//   const CreateUser = useMutation((api as any).user.CreateNewUser);
-//   const {user}=useUser();
-//   useEffect(()=>{
-
-//   })
-//   const CreateNewUser = async () => {
-//     if(user)
-//     {
-//     const result=await CreateUser({
-//       emai:user?.primaryEmailAddress?.emailAddress,
-//       imageUrl:user?.imageUrl,
-//       name:user?.fullName??''
-
-//     });
-//     }
-
-
-//   };
-
-//   return (
-//     <div>
-//       <Header />
-//       {children}
-//     </div>
-//   );
-// }
-
-// export default Provider;
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./_components/Headers";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
+import { UserDetailContext } from "@/context/UserDetailContext";
 
 function Provider({
   children,
@@ -52,6 +14,7 @@ function Provider({
   children: React.ReactNode;
 }>) {
   const createUser = useMutation(api.user.CreateNewUser);
+  const [UserDetail,setUserDetail]=useState<any>();
   const { user } = useUser();
 
   const createNewUser = async () => {
@@ -71,10 +34,14 @@ function Provider({
   }, [user]);
 
   return (
+    <UserDetailContext.Provider value={{UserDetail,setUserDetail}}>
+
     <div>
+
       <Header />
       {children}
     </div>
+    </UserDetailContext.Provider >
   );
 }
 
