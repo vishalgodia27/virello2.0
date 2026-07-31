@@ -51,7 +51,7 @@ function Header() {
           Get Started
         </InteractiveHoverButton>
       ) : (
-        <Link href="/create-trip">
+        <Link href="/create-new-trip">
           <InteractiveHoverButton>
             Create Trip
           </InteractiveHoverButton>
