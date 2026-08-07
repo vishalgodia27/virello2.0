@@ -90,7 +90,8 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
+    <div className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-
+    ">
       <div className="flex items-center justify-between px-5 py-4 sm:px-10">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 sm:gap-3">
